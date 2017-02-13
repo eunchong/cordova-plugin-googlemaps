@@ -851,6 +851,12 @@ public class PluginMarker extends MyPlugin {
           }
 
           BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(image);
+
+          if (bitmapDescriptor == null) {
+            callback.onPostExecute(marker);
+            return;
+          }
+
           marker.setIcon(bitmapDescriptor);
 
           // Save the information for the anchor property
