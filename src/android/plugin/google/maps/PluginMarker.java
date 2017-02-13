@@ -850,6 +850,11 @@ public class PluginMarker extends MyPlugin {
             return;
           }
 
+          if (marker == null) {
+            callback.onPostExecute(marker);
+            return;
+          }
+
           BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(image);
 
           if (bitmapDescriptor == null) {
