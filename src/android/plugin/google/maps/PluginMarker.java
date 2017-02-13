@@ -861,8 +861,15 @@ public class PluginMarker extends MyPlugin {
             callback.onPostExecute(marker);
             return;
           }
-
-          marker.setIcon(bitmapDescriptor);
+          try {
+            marker.setIcon(bitmapDescriptor);
+          }
+          catch (java.lang.IllegalArgumentException e) {
+            Log.e("GoogleMapsPlugin","PluginMarker: Warning - marker method called when marker has been disposed, wait for addMarker callback before calling more methods on the marker (setIcon etc).");
+            //e.printStackTrace();
+            callback.onPostExecute(marker);
+            return;
+          }
 
           // Save the information for the anchor property
           Bundle imageSize = new Bundle();
